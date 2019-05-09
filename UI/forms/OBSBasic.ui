@@ -37,6 +37,9 @@
    <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/res/images/OBS_WELCOME_Small.png); background-position:center;</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -656,7 +659,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>64</width>
+           <width>68</width>
            <height>16</height>
           </rect>
          </property>
@@ -710,7 +713,7 @@
            <x>0</x>
            <y>0</y>
            <width>16</width>
-           <height>28</height>
+           <height>16</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -843,7 +846,7 @@
              <string notr="true"/>
             </property>
             <property name="icon">
-             <iconset resource="obs.qrc">
+             <iconset>
               <normaloff>:/res/images/add.png</normaloff>:/res/images/add.png</iconset>
             </property>
             <property name="flat">
@@ -878,7 +881,7 @@
              <string notr="true"/>
             </property>
             <property name="icon">
-             <iconset resource="obs.qrc">
+             <iconset>
               <normaloff>:/res/images/list_remove.png</normaloff>:/res/images/list_remove.png</iconset>
             </property>
             <property name="flat">
@@ -913,7 +916,7 @@
              <string notr="true"/>
             </property>
             <property name="icon">
-             <iconset resource="obs.qrc">
+             <iconset>
               <normaloff>:/res/images/configuration21_16.png</normaloff>:/res/images/configuration21_16.png</iconset>
             </property>
             <property name="flat">
@@ -1115,7 +1118,7 @@
   </widget>
   <action name="actionAddScene">
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/add.png</normaloff>:/res/images/add.png</iconset>
    </property>
    <property name="text">
@@ -1127,7 +1130,7 @@
   </action>
   <action name="actionAddSource">
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/add.png</normaloff>:/res/images/add.png</iconset>
    </property>
    <property name="text">
@@ -1139,7 +1142,7 @@
   </action>
   <action name="actionRemoveScene">
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/list_remove.png</normaloff>:/res/images/list_remove.png</iconset>
    </property>
    <property name="text">
@@ -1157,7 +1160,7 @@
   </action>
   <action name="actionRemoveSource">
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/list_remove.png</normaloff>:/res/images/list_remove.png</iconset>
    </property>
    <property name="text">
@@ -1178,7 +1181,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/properties.png</normaloff>:/res/images/properties.png</iconset>
    </property>
    <property name="text">
@@ -1190,7 +1193,7 @@
   </action>
   <action name="actionSceneUp">
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/up.png</normaloff>:/res/images/up.png</iconset>
    </property>
    <property name="text">
@@ -1205,7 +1208,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/up.png</normaloff>:/res/images/up.png</iconset>
    </property>
    <property name="text">
@@ -1217,7 +1220,7 @@
   </action>
   <action name="actionSceneDown">
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/down.png</normaloff>:/res/images/down.png</iconset>
    </property>
    <property name="text">
@@ -1232,7 +1235,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="obs.qrc">
+    <iconset>
      <normaloff>:/res/images/down.png</normaloff>:/res/images/down.png</iconset>
    </property>
    <property name="text">

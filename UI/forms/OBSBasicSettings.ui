@@ -49,17 +49,8 @@
         </size>
        </property>
        <property name="currentRow">
-        <number>0</number>
+        <number>-1</number>
        </property>
-       <item>
-        <property name="text">
-         <string>Basic.Settings.General</string>
-        </property>
-        <property name="icon">
-         <iconset resource="obs.qrc">
-          <normaloff>:/settings/images/settings/general.svg</normaloff>:/settings/images/settings/general.svg</iconset>
-        </property>
-       </item>
        <item>
         <property name="text">
          <string>Basic.Settings.Stream</string>
@@ -96,24 +87,6 @@
           <normaloff>:/settings/images/settings/video.svg</normaloff>:/settings/images/settings/video.svg</iconset>
         </property>
        </item>
-       <item>
-        <property name="text">
-         <string>Basic.Settings.Hotkeys</string>
-        </property>
-        <property name="icon">
-         <iconset resource="obs.qrc">
-          <normaloff>:/settings/images/settings/hotkeys.svg</normaloff>:/settings/images/settings/hotkeys.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Basic.Settings.Advanced</string>
-        </property>
-        <property name="icon">
-         <iconset resource="obs.qrc">
-          <normaloff>:/settings/images/settings/advanced.svg</normaloff>:/settings/images/settings/advanced.svg</iconset>
-        </property>
-       </item>
       </widget>
      </item>
      <item>
@@ -138,7 +111,7 @@
          <item>
           <widget class="QScrollArea" name="scrollArea_2">
            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Plain</enum>
@@ -151,8 +124,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>808</width>
-              <height>989</height>
+              <width>795</width>
+              <height>1012</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1159,22 +1132,22 @@
          </property>
          <item>
           <widget class="QScrollArea" name="scrollArea_3">
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Plain</enum>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
            </property>
            <widget class="QWidget" name="scrollAreaWidgetContents_3">
             <property name="geometry">
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>747</width>
-              <height>808</height>
+              <width>739</width>
+              <height>793</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -3608,21 +3581,7 @@
          <item>
           <widget class="QScrollArea" name="scrollArea_50">
            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>594</width>
-             <height>807</height>
-            </rect>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Plain</enum>
@@ -3635,8 +3594,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>594</width>
-              <height>807</height>
+              <width>696</width>
+              <height>601</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -4064,7 +4023,7 @@
            </widget>
           </widget>
          </item>
-         <item row="11" column="1">
+         <item>
           <widget class="QLabel" name="audioMsg">
            <property name="text">
             <string notr="true"/>
@@ -4077,7 +4036,7 @@
            </property>
           </widget>
          </item>
-         <item row="12" column="1">
+         <item>
           <widget class="QLabel" name="audioMsg_2">
            <property name="text">
             <string notr="true"/>
@@ -4451,8 +4410,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>765</width>
-              <height>993</height>
+              <width>759</width>
+              <height>898</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
