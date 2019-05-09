@@ -1293,34 +1293,34 @@ bool OBSApp::OBSInit()
 
 
 	//SmartIntellectuals
-	const QString loginAppPath { "LoginApp.app" };
-	const QString steamInfoPath { "steamInfo.txt" };
-	qDebug()<<QDir::currentPath()<<endl;
-	qDebug()<<steamInfoPath<<endl;
+	// const QString loginAppPath { "LoginApp.app" };
+	// const QString steamInfoPath { "steamInfo.txt" };
+	// qDebug()<<QDir::currentPath()<<endl;
+	// qDebug()<<steamInfoPath<<endl;
 
-	if (QFile::exists(loginAppPath))
-    {
-		qDebug()<<"LoginApp found"<<endl;
-    }
-	else
-	{
-		qDebug()<<"LoginApp didn't found"<<endl;
-		return false;
-	}
+	// if (QFile::exists(loginAppPath))
+    // {
+	// 	qDebug()<<"LoginApp found"<<endl;
+    // }
+	// else
+	// {
+	// 	qDebug()<<"LoginApp didn't found"<<endl;
+	// 	return false;
+	// }
 
-	QProcess process {};
-	process.start(loginAppPath);
-	process.waitForFinished();
-	process.close();
+	// QProcess process {};
+	// process.start(loginAppPath);
+	// process.waitForFinished();
+	// process.close();
 
-	if(QFileInfo::exists(steamInfoPath))
-	{
+	// if(QFileInfo::exists(steamInfoPath))
+	// {
 
-	}
-	else
-	{
-		return false;
-	}
+	// }
+	// else
+	// {
+	// 	return false;
+	// }
 
 	setQuitOnLastWindowClosed(false);
 
