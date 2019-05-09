@@ -35,6 +35,13 @@
 #include <QProxyStyle>
 #include <QScreen>
 
+//SmartIntellectuals
+#include <QMessageBox>
+#include <QDir>
+#include <QProcess>
+#include <QFileInfo>
+#include <QDebug>
+
 #include "qt-wrappers.hpp"
 #include "obs-app.hpp"
 #include "window-basic-main.hpp"
@@ -1283,6 +1290,37 @@ bool OBSApp::OBSInit()
 
 	blog(LOG_INFO, "Portable mode: %s",
 			portable_mode ? "true" : "false");
+
+
+	//SmartIntellectuals
+	const QString loginAppPath { "LoginApp.app" };
+	const QString steamInfoPath { "steamInfo.txt" };
+	qDebug()<<QDir::currentPath()<<endl;
+	qDebug()<<steamInfoPath<<endl;
+
+	if (QFile::exists(loginAppPath))
+    {
+		qDebug()<<"LoginApp found"<<endl;
+    }
+	else
+	{
+		qDebug()<<"LoginApp didn't found"<<endl;
+		return false;
+	}
+
+	QProcess process {};
+	process.start(loginAppPath);
+	process.waitForFinished();
+	process.close();
+
+	if(QFileInfo::exists(steamInfoPath))
+	{
+
+	}
+	else
+	{
+		return false;
+	}
 
 	setQuitOnLastWindowClosed(false);
 
