@@ -34,6 +34,9 @@ inline bool OBSBasicSettings::IsCustomService() const
 
 void OBSBasicSettings::InitStreamPage()
 {
+	//SmartIntellectuals
+	ui->useAuth->setVisible(false);
+
 	ui->connectAccount2->setVisible(false);
 	ui->disconnectAccount->setVisible(false);
 	ui->bandwidthTestEnable->setVisible(false);
@@ -62,6 +65,9 @@ void OBSBasicSettings::InitStreamPage()
 
 void OBSBasicSettings::LoadStream1Settings()
 {
+	//SmartIntellectuals
+	ui->serviceLabel->setVisible(false);
+
 	obs_service_t *service_obj = main->GetService();
 	const char *type = obs_service_get_type(service_obj);
 
@@ -125,7 +131,10 @@ void OBSBasicSettings::LoadStream1Settings()
 
 void OBSBasicSettings::SaveStream1Settings()
 {
-	bool customServer = IsCustomService();
+	//SmartIntellectuals
+	//bool customServer = IsCustomService();
+	bool customServer = true;
+
 	const char *service_id = customServer
 		? "rtmp_custom"
 		: "rtmp_common";
@@ -145,14 +154,16 @@ void OBSBasicSettings::SaveStream1Settings()
 	} else {
 		obs_data_set_string(settings, "server",
 				QT_TO_UTF8(ui->customServer->text()));
-		obs_data_set_bool(settings, "use_auth",
-				ui->useAuth->isChecked());
-		if (ui->useAuth->isChecked()) {
-			obs_data_set_string(settings, "username",
-					QT_TO_UTF8(ui->authUsername->text()));
-			obs_data_set_string(settings, "password",
-					QT_TO_UTF8(ui->authPw->text()));
-		}
+		//SmartIntellectuals
+		//Skip-Authentication
+		// obs_data_set_bool(settings, "use_auth",
+		// 		ui->useAuth->isChecked());
+		// if (ui->useAuth->isChecked()) {
+		// 	obs_data_set_string(settings, "username",
+		// 			QT_TO_UTF8(ui->authUsername->text()));
+		// 	obs_data_set_string(settings, "password",
+		// 			QT_TO_UTF8(ui->authPw->text()));
+		//}
 	}
 
 	obs_data_set_bool(settings, "bwtest", ui->bandwidthTestEnable->isChecked());
@@ -288,11 +299,18 @@ void OBSBasicSettings::on_service_currentIndexChanged(int)
 	ui->connectAccount2->setVisible(false);
 #endif
 
+	//SmartIntellectuals
+	//Hide Authentication
+	custom = false;
+
 	ui->useAuth->setVisible(custom);
 	ui->authUsernameLabel->setVisible(custom);
 	ui->authUsername->setVisible(custom);
 	ui->authPwLabel->setVisible(custom);
 	ui->authPwWidget->setVisible(custom);
+
+	//SmartIntellectuals
+	custom = true;
 
 	if (custom) {
 		ui->streamkeyPageLayout->insertRow(1, ui->serverLabel,
@@ -319,6 +337,9 @@ void OBSBasicSettings::on_service_currentIndexChanged(int)
 
 void OBSBasicSettings::UpdateServerList()
 {
+	//SmartIntellectuals
+	ui->service->setVisible(false);
+
 	QString serviceName = ui->service->currentText();
 	bool showMore =
 		ui->service->currentData().toInt() == (int)ListOpt::ShowAll;

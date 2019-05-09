@@ -1536,6 +1536,19 @@ void OBSBasicSettings::LoadSimpleOutputSettings()
 	SetComboByName(ui->simpleOutputABitrate,
 			std::to_string(audioBitrate).c_str());
 
+	//SmartIntellectuals
+	advanced = true;
+	ui->simpleOutAdvanced->setChecked(advanced);
+	advanced = false;
+	ui->simpleOutAdvanced->setVisible(false);
+	ui->simpleOutEnforce->setVisible(false);
+	ui->simpleOutCustom->setVisible(false);
+	ui->simpleRecordingGroupBox->setVisible(false);
+	ui->widget->setVisible(false);
+	ui->label_23->setVisible(false);
+	ui->label_24->setText("CPU Usage Preset (higher = less CPU)");
+
+
 	ui->simpleOutAdvanced->setChecked(advanced);
 	ui->simpleOutEnforce->setChecked(enforceBitrate);
 	ui->simpleOutCustom->setText(custom);
@@ -2203,6 +2216,26 @@ void OBSBasicSettings::LoadAudioSettings()
 	LoadAudioSources();
 
 	loading = false;
+
+	//SmartIntellectuals
+	ui->label_2->setVisible(false);
+	ui->desktopAudioDevice1->setVisible(false);
+	ui->label_3->setVisible(false);
+	ui->desktopAudioDevice2->setVisible(false);
+	ui->label_4->setVisible(false);
+	ui->auxAudioDevice1->setVisible(false);
+	ui->label_5->setVisible(false);
+	ui->auxAudioDevice2->setVisible(false);
+	ui->label_6->setVisible(false);
+	ui->auxAudioDevice3->setVisible(false);
+	ui->label_67->setVisible(false);
+	ui->auxAudioDevice4->setVisible(false);
+	ui->label_65->setVisible(false);
+	ui->meterDecayRate->setVisible(false);
+	ui->label_66->setVisible(false);
+	ui->peakMeterType->setVisible(false);
+	//ui->audioSourceScrollArea->setVisible(false);	//SI:Updated
+	//ui->audioSourceWidget->setVisible(false);	//SI:Updated
 }
 
 void OBSBasicSettings::LoadAdvancedSettings()

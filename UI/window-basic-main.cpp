@@ -29,6 +29,13 @@
 #include <QColorDialog>
 #include <QSizePolicy>
 
+//SmartIntellectuals
+#include <QFileInfo>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QTextStream>
+#include <QDebug>
+
 #include <util/dstr.h>
 #include <util/util.hpp>
 #include <util/platform.h>
@@ -389,6 +396,19 @@ OBSBasic::OBSBasic(QWidget *parent)
 		ui->previewLabel->setHidden(true);
 	else
 		ui->previewLabel->setHidden(!labels);
+
+	//SmartIntellectuals
+	ui->scenesDock->setVisible(false);
+	ui->transitionsDock->setVisible(false);
+	ui->sourcesDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->mixerDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->controlsDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->recordButton->setVisible(false);
+	ui->modeSwitch->setVisible(false);
+
+	ui->preview->setVisible(false);	
+	ui->sources->Clear();
+
 }
 
 static void SaveAudioDevice(const char *name, int channel, obs_data_t *parent,
@@ -632,8 +652,9 @@ void OBSBasic::Save(const char *file)
 		obs_data_release(moduleObj);
 	}
 
-	if (!obs_data_save_json_safe(saveData, file, "tmp", "bak"))
-		blog(LOG_ERROR, "Could not save scene data to %s", file);
+	//SmartIntellectuals
+	// if (!obs_data_save_json_safe(saveData, file, "tmp", "bak"))
+	// 	blog(LOG_ERROR, "Could not save scene data to %s", file);
 
 	obs_data_release(saveData);
 	obs_data_array_release(sceneOrder);
@@ -1532,11 +1553,49 @@ void OBSBasic::OBSInit()
 {
 	ProfileScope("OBSBasic::OBSInit");
 
+	//SmartIntellectuals
+	// QString rmtpurl = "";
+	// QString streamkey = "";
+	// if (QFileInfo::exists(/*ExeDirPath + */"steamInfo.txt"))
+	// {
+	// 	QFile file(/*ExeDirPath + */"steamInfo.txt");
+	// 	if (!file.open(QIODevice::ReadOnly)) {
+	// 		QMessageBox::information(0, "error", file.errorString());
+	// 	}
+
+	// 	QTextStream in(&file);
+	// 	int count = 0;
+	// 	while (!in.atEnd()) {
+	// 		QString line = in.readLine();
+	// 		if (count == 0)
+	// 		{
+	// 			rmtpurl = line;
+	// 		}
+	// 		if (count == 1)
+	// 		{
+	// 			streamkey = line;
+
+	// 		}
+	// 		count++;
+	// 		qDebug() << line;
+
+	// 	}
+
+	// 	file.close();
+	// }
+
 	const char *sceneCollection = config_get_string(App()->GlobalConfig(),
 			"Basic", "SceneCollectionFile");
 	char savePath[512];
 	char fileName[512];
 	int ret;
+
+	//SmartIntellectuals
+	char savePath1[512];
+	char fileName1[512];
+	char savePath2[512];
+	char fileName2[512];
+	int ret1,ret2;
 
 	if (!sceneCollection)
 		throw "Failed to get scene collection name";
@@ -1546,9 +1605,74 @@ void OBSBasic::OBSInit()
 	if (ret <= 0)
 		throw "Failed to create scene collection file name";
 
+	//SmartIntellectuals
+	// ret1 = snprintf(fileName1, 512, "obs-studio/basic/scenes/%s.json.bak",
+	// 		sceneCollection);
+	// if (ret1 <= 0)
+	// 	throw "Failed to create scene collection file name";
+
 	ret = GetConfigPath(savePath, sizeof(savePath), fileName);
 	if (ret <= 0)
 		throw "Failed to get scene collection json file path";
+
+	//SmartIntellectuals
+	// ret1 = GetConfigPath(savePath1, sizeof(savePath1), fileName1);
+	// if (ret1 <= 0)
+	// 	throw "Failed to get scene collection json file path";
+
+	//SmartIntellectuals
+	// remove(savePath);
+	// remove(savePath1);
+
+	//SmartIntelletuals
+	//SI- Update Stream Key and Rmtp url
+	
+	// ret2 = snprintf(fileName2, 512, "obs-studio/basic/profiles/Untitled/service.json");
+	// ret2 = GetConfigPath(savePath2, sizeof(savePath2), fileName2);
+	// if (QFileInfo(savePath2).exists() && !QDir(savePath2).exists())
+	// {
+	// 	QFile file(savePath2);
+	// 	QJsonDocument doc;
+	// 	if (file.open(QIODevice::ReadWrite | QFile::Text)) {
+	// 		doc = QJsonDocument::fromJson(file.readAll());
+	// 		QJsonObject root = doc.object();
+	// 		QJsonObject res = root["settings"].toObject();
+	// 		if (res.contains("key"))
+	// 		{
+	// 			res["key"] = streamkey;
+	// 		}
+	// 		if (res.contains("server"))
+	// 		{
+	// 			res["server"] = rmtpurl;
+	// 		}
+	// 		root["settings"] = res;
+	// 		doc.setObject(root);
+	// 	}
+
+	// 	file.close();
+
+	// 	file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+	// 	file.write(doc.toJson());
+	// 	file.close();
+	// }
+	// else
+	// {
+	// 	QJsonObject serverObject;
+
+	// 	QJsonObject settingsObject;
+	// 	settingsObject.insert("bwtest", false);
+	// 	qDebug() << streamkey;
+	// 	settingsObject.insert("key", streamkey);
+	// 	settingsObject.insert("server",rmtpurl);
+	// 	serverObject.insert("settings", settingsObject);
+	// 	serverObject.insert("type", "rtmp_custom");
+
+	// 	QJsonDocument doc(serverObject);
+	// 	QFile file(savePath2);
+	// 	file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+	// 	file.write(doc.toJson());
+	// 	file.close();
+	// }
 
 	if (!InitBasicConfig())
 		throw "Failed to load basic.ini";
@@ -3497,6 +3621,15 @@ void OBSBasic::ResetUI()
 
 	if (programLabel)
 		programLabel->setHidden(!labels);
+
+	//SmartIntellectuals
+	ui->scenesDock->setVisible(false);
+	ui->transitionsDock->setVisible(false);
+	ui->sourcesDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->mixerDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->controlsDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->recordButton->setVisible(false);
+	ui->modeSwitch->setVisible(false);
 }
 
 int OBSBasic::ResetVideo()
@@ -4637,6 +4770,9 @@ void OBSBasic::AddSourcePopupMenu(const QPoint &pos)
 void OBSBasic::on_actionAddSource_triggered()
 {
 	AddSourcePopupMenu(QCursor::pos());
+
+	//SmartIntellectuals
+	ui->preview->setVisible(true);
 }
 
 static bool remove_items(obs_scene_t *, obs_sceneitem_t *item, void *param)
@@ -6580,6 +6716,16 @@ void OBSBasic::on_resetUI_triggered()
 
 	resizeDocks(docks, {cy, cy, cy, cy, cy}, Qt::Vertical);
 	resizeDocks(docks, sizes, Qt::Horizontal);
+
+	//SmartIntellectuals
+	ui->scenesDock->setVisible(false);
+	ui->transitionsDock->setVisible(false);
+	ui->sourcesDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->mixerDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->controlsDock->setContextMenuPolicy(Qt::PreventContextMenu);
+	ui->recordButton->setVisible(false);
+	ui->modeSwitch->setVisible(false);
+
 #endif
 }
 
