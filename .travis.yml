@@ -28,12 +28,6 @@ matrix:
       before_script: "./CI/before-script-osx.sh"
       before_deploy: "./CI/before-deploy-osx.sh"
 
-    - os: linux
-      dist: xenial
-      sudo: required
-      before_install: "./CI/install-dependencies-linux.sh"
-      before_script: "./CI/before-script-linux.sh"
-
 script: cd ./build && make -j4 && cd -
 
 deploy:
@@ -41,14 +35,13 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   skip_cleanup: true
-  local_dir: nightly
-  bucket: obs-nightly
-  region: us-west-2
-  acl: public_read
-  on:
-    repo: obsproject/obs-studio
-    condition: "$TRAVIS_OS_NAME = osx"
-    all_branches: true
+  bucket: obs-studio
+  region: us-east-2
+  #acl: public_read
+  #on:
+    #repo: obsproject/obs-studio
+    #condition: "$TRAVIS_OS_NAME = osx"
+    #all_branches: true
 
 notifications:
   webhooks:
