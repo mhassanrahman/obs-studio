@@ -2240,6 +2240,10 @@ void OBSBasicSettings::LoadAudioSettings()
 	ui->peakMeterType->setVisible(false);
 	//ui->audioSourceScrollArea->setVisible(false);	//SI:Updated
 	//ui->audioSourceWidget->setVisible(false);	//SI:Updated
+	ui->audioDevicesGroupBox->setVisible(false);
+	ui->audioMetersGroupBox->setVisible(false);
+	ui->audioAdvGroupBox->setVisible(false);
+	ui->audioHotkeysGroupBox->setVisible(false);
 }
 
 void OBSBasicSettings::LoadAdvancedSettings()
