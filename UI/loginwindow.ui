@@ -6,31 +6,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>540</width>
+    <height>213</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Login [www.digiflixlivestream.com]</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>230</x>
      <y>20</y>
-     <width>101</width>
-     <height>16</height>
+     <width>191</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>LOGIN WINDOW</string>
+    <string>OPEN BROADCAST SOFTWARE</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pbConnect">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>180</y>
+     <x>340</x>
+     <y>170</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -42,8 +42,8 @@
   <widget class="QLabel" name="lbUserName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>80</y>
+     <x>280</x>
+     <y>60</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -55,7 +55,7 @@
   <widget class="QLabel" name="lbPassword">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>280</x>
      <y>110</y>
      <width>91</width>
      <height>16</height>
@@ -68,9 +68,9 @@
   <widget class="QLineEdit" name="leUserName">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>280</x>
      <y>80</y>
-     <width>211</width>
+     <width>241</width>
      <height>21</height>
     </rect>
    </property>
@@ -81,9 +81,9 @@
   <widget class="QLineEdit" name="lePassword">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>110</y>
-     <width>211</width>
+     <x>280</x>
+     <y>130</y>
+     <width>241</width>
      <height>21</height>
     </rect>
    </property>
@@ -94,7 +94,28 @@
     <enum>QLineEdit::Password</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="lbDigiFlixImage">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>241</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="forms/obs.qrc">:/res/images/OBS_WELCOME.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="forms/obs.qrc"/>
+ </resources>
  <connections/>
 </ui>
