@@ -1554,35 +1554,35 @@ void OBSBasic::OBSInit()
 	ProfileScope("OBSBasic::OBSInit");
 
 	//SmartIntellectuals
-	// QString rmtpurl = "";
-	// QString streamkey = "";
-	// if (QFileInfo::exists(/*ExeDirPath + */"steamInfo.txt"))
-	// {
-	// 	QFile file(/*ExeDirPath + */"steamInfo.txt");
-	// 	if (!file.open(QIODevice::ReadOnly)) {
-	// 		QMessageBox::information(0, "error", file.errorString());
-	// 	}
+	QString rmtpurl = "";
+	QString streamkey = "";
+	if (QFileInfo::exists(/*ExeDirPath + */"steamInfo.txt"))
+	{
+		QFile file(/*ExeDirPath + */"steamInfo.txt");
+		if (!file.open(QIODevice::ReadOnly)) {
+			QMessageBox::information(0, "error", file.errorString());
+		}
 
-	// 	QTextStream in(&file);
-	// 	int count = 0;
-	// 	while (!in.atEnd()) {
-	// 		QString line = in.readLine();
-	// 		if (count == 0)
-	// 		{
-	// 			rmtpurl = line;
-	// 		}
-	// 		if (count == 1)
-	// 		{
-	// 			streamkey = line;
+		QTextStream in(&file);
+		int count = 0;
+		while (!in.atEnd()) {
+			QString line = in.readLine();
+			if (count == 0)
+			{
+				rmtpurl = line;
+			}
+			if (count == 1)
+			{
+				streamkey = line;
 
-	// 		}
-	// 		count++;
-	// 		qDebug() << line;
+			}
+			count++;
+			qDebug() << line;
 
-	// 	}
+		}
 
-	// 	file.close();
-	// }
+		file.close();
+	}
 
 	const char *sceneCollection = config_get_string(App()->GlobalConfig(),
 			"Basic", "SceneCollectionFile");
@@ -1616,63 +1616,63 @@ void OBSBasic::OBSInit()
 		throw "Failed to get scene collection json file path";
 
 	//SmartIntellectuals
-	// ret1 = GetConfigPath(savePath1, sizeof(savePath1), fileName1);
-	// if (ret1 <= 0)
-	// 	throw "Failed to get scene collection json file path";
+	ret1 = GetConfigPath(savePath1, sizeof(savePath1), fileName1);
+	if (ret1 <= 0)
+		throw "Failed to get scene collection json file path";
 
 	//SmartIntellectuals
-	// remove(savePath);
-	// remove(savePath1);
+	remove(savePath);
+	remove(savePath1);
 
 	//SmartIntelletuals
-	//SI- Update Stream Key and Rmtp url
+	// SI- Update Stream Key and Rmtp url
 	
-	// ret2 = snprintf(fileName2, 512, "obs-studio/basic/profiles/Untitled/service.json");
-	// ret2 = GetConfigPath(savePath2, sizeof(savePath2), fileName2);
-	// if (QFileInfo(savePath2).exists() && !QDir(savePath2).exists())
-	// {
-	// 	QFile file(savePath2);
-	// 	QJsonDocument doc;
-	// 	if (file.open(QIODevice::ReadWrite | QFile::Text)) {
-	// 		doc = QJsonDocument::fromJson(file.readAll());
-	// 		QJsonObject root = doc.object();
-	// 		QJsonObject res = root["settings"].toObject();
-	// 		if (res.contains("key"))
-	// 		{
-	// 			res["key"] = streamkey;
-	// 		}
-	// 		if (res.contains("server"))
-	// 		{
-	// 			res["server"] = rmtpurl;
-	// 		}
-	// 		root["settings"] = res;
-	// 		doc.setObject(root);
-	// 	}
+	ret2 = snprintf(fileName2, 512, "obs-studio/basic/profiles/Untitled/service.json");
+	ret2 = GetConfigPath(savePath2, sizeof(savePath2), fileName2);
+	if (QFileInfo(savePath2).exists() && !QDir(savePath2).exists())
+	{
+		QFile file(savePath2);
+		QJsonDocument doc;
+		if (file.open(QIODevice::ReadWrite | QFile::Text)) {
+			doc = QJsonDocument::fromJson(file.readAll());
+			QJsonObject root = doc.object();
+			QJsonObject res = root["settings"].toObject();
+			if (res.contains("key"))
+			{
+				res["key"] = streamkey;
+			}
+			if (res.contains("server"))
+			{
+				res["server"] = rmtpurl;
+			}
+			root["settings"] = res;
+			doc.setObject(root);
+		}
 
-	// 	file.close();
+		file.close();
 
-	// 	file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
-	// 	file.write(doc.toJson());
-	// 	file.close();
-	// }
-	// else
-	// {
-	// 	QJsonObject serverObject;
+		file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+		file.write(doc.toJson());
+		file.close();
+	}
+	else
+	{
+		QJsonObject serverObject;
 
-	// 	QJsonObject settingsObject;
-	// 	settingsObject.insert("bwtest", false);
-	// 	qDebug() << streamkey;
-	// 	settingsObject.insert("key", streamkey);
-	// 	settingsObject.insert("server",rmtpurl);
-	// 	serverObject.insert("settings", settingsObject);
-	// 	serverObject.insert("type", "rtmp_custom");
+		QJsonObject settingsObject;
+		settingsObject.insert("bwtest", false);
+		qDebug() << streamkey;
+		settingsObject.insert("key", streamkey);
+		settingsObject.insert("server",rmtpurl);
+		serverObject.insert("settings", settingsObject);
+		serverObject.insert("type", "rtmp_custom");
 
-	// 	QJsonDocument doc(serverObject);
-	// 	QFile file(savePath2);
-	// 	file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
-	// 	file.write(doc.toJson());
-	// 	file.close();
-	// }
+		QJsonDocument doc(serverObject);
+		QFile file(savePath2);
+		file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+		file.write(doc.toJson());
+		file.close();
+	}
 
 	if (!InitBasicConfig())
 		throw "Failed to load basic.ini";
