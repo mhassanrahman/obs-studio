@@ -1444,6 +1444,10 @@ void OBSBasicSettings::LoadVideoSettings()
 	}
 #endif
 
+	//SmartIntellectuals
+	ui->label_11->setVisible(false);
+	ui->downscaleFilter->setVisible(false);
+
 	loading = false;
 }
 
