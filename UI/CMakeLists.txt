@@ -248,7 +248,8 @@ set(obs_SOURCES
 	source-label.cpp
 	remote-text.cpp
 	audio-encoders.cpp
-	qt-wrappers.cpp)
+	qt-wrappers.cpp
+	loginwindow.cpp)
 
 set(obs_HEADERS
 	${obs_PLATFORM_HEADERS}
@@ -306,7 +307,8 @@ set(obs_HEADERS
 	remote-text.hpp
 	audio-encoders.hpp
 	qt-wrappers.hpp
-	clickable-label.hpp)
+	clickable-label.hpp
+	loginwindow.h)
 
 set(obs_UI
 	forms/NameDialog.ui
@@ -324,7 +326,8 @@ set(obs_UI
 	forms/OBSBasicInteraction.ui
 	forms/OBSUpdate.ui
 	forms/OBSRemux.ui
-	forms/OBSAbout.ui)
+	forms/OBSAbout.ui
+	loginwindow.ui)
 
 set(obs_QRC
 	forms/obs.qrc)
@@ -350,6 +353,7 @@ if(WIN32)
 			OUTPUT_NAME "obs${_output_suffix}")
 endif()
 
+find_package(Qt5Network REQUIRED)
 target_link_libraries(obs
 	libobs
 	Qt5::Widgets
@@ -357,7 +361,8 @@ target_link_libraries(obs
 	obs-frontend-api
 	${FFMPEG_LIBRARIES}
 	${LIBCURL_LIBRARIES}
-	${obs_PLATFORM_LIBRARIES})
+	${obs_PLATFORM_LIBRARIES}
+	Qt5::Network)
 
 if (APPLE)
 	target_link_libraries(obs

@@ -41,6 +41,8 @@
 #include <QProcess>
 #include <QFileInfo>
 #include <QDebug>
+#include "loginwindow.h"
+//#include "ui_loginwindow.h"
 
 #include "qt-wrappers.hpp"
 #include "obs-app.hpp"
@@ -1293,6 +1295,10 @@ bool OBSApp::OBSInit()
 
 
 	//SmartIntellectuals
+
+	LoginWindow loginWindow;
+    loginWindow.setModal(true);
+    loginWindow.exec();
 	// const QString loginAppPath { "LoginApp.app" };
 	// const QString steamInfoPath { "steamInfo.txt" };
 	// qDebug()<<QDir::currentPath()<<endl;
