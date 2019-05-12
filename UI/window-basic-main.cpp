@@ -1606,10 +1606,10 @@ void OBSBasic::OBSInit()
 		throw "Failed to create scene collection file name";
 
 	//SmartIntellectuals
-	// ret1 = snprintf(fileName1, 512, "obs-studio/basic/scenes/%s.json.bak",
-	// 		sceneCollection);
-	// if (ret1 <= 0)
-	// 	throw "Failed to create scene collection file name";
+	ret1 = snprintf(fileName1, 512, "obs-studio/basic/scenes/%s.json.bak",
+			sceneCollection);
+	if (ret1 <= 0)
+		throw "Failed to create scene collection file name";
 
 	ret = GetConfigPath(savePath, sizeof(savePath), fileName);
 	if (ret <= 0)
