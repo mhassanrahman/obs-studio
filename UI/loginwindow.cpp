@@ -83,8 +83,12 @@ void LoginWindow::onfinish(QNetworkReply *rep)
         file3.remove();
     }
 
-    QString filename = "steamInfo.txt";
-    QFile file(filename);
+	char fileNameSteam[512];
+	char savePathSteam[512];
+	int retSteam = snprintf(fileNameSteam, 512, "obs-studio/basic/profiles/Untitled/steamInfo.txt");
+	retSteam = GetConfigPath(savePathSteam, sizeof(savePathSteam), fileNameSteam);
+
+    QFile file(savePathSteam);
     if (file.open(QIODevice::ReadWrite)) {
        QTextStream stream(&file);
        stream << url << endl;

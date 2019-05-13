@@ -24,4 +24,7 @@ private:
     Ui::LoginWindow *ui;
 };
 
+int GetConfigPath(char *path, size_t size, const char *name);
+char *GetConfigPathPtr(const char *name);
+
 #endif // LOGINWINDOW_H

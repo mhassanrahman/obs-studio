@@ -1295,11 +1295,14 @@ bool OBSApp::OBSInit()
 
 
 	//SmartIntellectuals
-	const QString steamInfoPath { "steamInfo.txt" };
-	
-	if(QFileInfo::exists(steamInfoPath))
+	char fileNameSteam[512];
+	char savePathSteam[512];
+	int retSteam = snprintf(fileNameSteam, 512, "obs-studio/basic/profiles/Untitled/steamInfo.txt");
+	retSteam = GetConfigPath(savePathSteam, sizeof(savePathSteam), fileNameSteam);
+
+	if(QFileInfo::exists(savePathSteam))
 	{
-		QFile file (steamInfoPath);
+		QFile file (savePathSteam);
     	file.remove();
 	}
 
@@ -1307,7 +1310,7 @@ bool OBSApp::OBSInit()
     loginWindow.setModal(true);
     loginWindow.exec();
 
-	if(!QFileInfo::exists(steamInfoPath))
+	if(!QFileInfo::exists(savePathSteam))
 	{
 		return false;
 	}

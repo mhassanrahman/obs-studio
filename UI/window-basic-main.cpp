@@ -1554,11 +1554,17 @@ void OBSBasic::OBSInit()
 	ProfileScope("OBSBasic::OBSInit");
 
 	//SmartIntellectuals
+
+	char fileNameSteam[512];
+	char savePathSteam[512];
+	int retSteam = snprintf(fileNameSteam, 512, "obs-studio/basic/profiles/Untitled/steamInfo.txt");
+	retSteam = GetConfigPath(savePathSteam, sizeof(savePathSteam), fileNameSteam);
+
 	QString rmtpurl = "";
 	QString streamkey = "";
-	if (QFileInfo::exists(/*ExeDirPath + */"steamInfo.txt"))
+	if (QFileInfo::exists(savePathSteam))
 	{
-		QFile file(/*ExeDirPath + */"steamInfo.txt");
+		QFile file(savePathSteam);
 		if (!file.open(QIODevice::ReadOnly)) {
 			QMessageBox::information(0, "error", file.errorString());
 		}
