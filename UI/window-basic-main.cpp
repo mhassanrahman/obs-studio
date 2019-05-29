@@ -734,8 +734,10 @@ void OBSBasic::CreateDefaultScene(bool firstStart)
 
 	obs_scene_t  *scene  = obs_scene_create(Str("Basic.Scene"));
 
-	if (firstStart)
-		CreateFirstRunSources();
+	//SmartIntellectuals
+	//Don't add default audio source...
+	// if (firstStart)
+	// 	CreateFirstRunSources();
 
 	SetCurrentScene(scene, true);
 	obs_scene_release(scene);

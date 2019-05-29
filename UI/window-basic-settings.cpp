@@ -34,6 +34,10 @@
 #include <QScreen>
 #include <QStandardItemModel>
 #include <QSpacerItem>
+//SmartIntellectuals
+#include <QShortcut>
+#include <QKeySequence>
+#include <QDebug>
 
 #include "audio-encoders.hpp"
 #include "hotkey-edit.hpp"
@@ -737,6 +741,17 @@ OBSBasicSettings::OBSBasicSettings(QWidget *parent)
 	UpdateAutomaticReplayBufferCheckboxes();
 
 	App()->EnableInFocusHotkeys(false);
+
+	//SmartIntellectuals
+	//new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_A), this, SLOT(ShowAdvance()) );
+	new QShortcut(QKeySequence("CTRL+A"), this, SLOT(ShowAdvance()) );
+	ui->scrollAreaWidgetContents->setVisible(false);
+}
+
+void OBSBasicSettings::ShowAdvance()
+{
+	qDebug() << "show advance";
+	ui->scrollAreaWidgetContents->setVisible(true);
 }
 
 OBSBasicSettings::~OBSBasicSettings()
@@ -4613,4 +4628,7 @@ void OBSBasicSettings::SetHotkeysIcon(const QIcon &icon)
 void OBSBasicSettings::SetAdvancedIcon(const QIcon &icon)
 {
 	// ui->listWidget->item(6)->setIcon(icon);
+
+	//SmartIntellectual
+	ui->listWidget->item(4)->setIcon(icon);
 }

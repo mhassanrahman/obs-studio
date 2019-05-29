@@ -351,11 +351,14 @@ private slots:
 	void SetVideoIcon(const QIcon &icon);
 	void SetHotkeysIcon(const QIcon &icon);
 	void SetAdvancedIcon(const QIcon &icon);
-
+	//SmartIntellectuals
+	void ShowAdvance();
+	
 protected:
 	virtual void closeEvent(QCloseEvent *event);
 
 public:
 	OBSBasicSettings(QWidget *parent);
 	~OBSBasicSettings();
+
 };
