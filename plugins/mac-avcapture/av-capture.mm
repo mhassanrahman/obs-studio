@@ -1530,9 +1530,16 @@ static bool update_resolution_property(obs_properties_t *props,
 
 	DStr name;
 	unique_ptr<obs_data_t> buffer{obs_data_create()};
+
+		//SmartIntellectuals 
+		auto json = obs_data_get_json(buffer);
+		dstr_printf(name, "%dx%d", 1920, 1080);
+		size_t idx = obs_property_list_add_string(p, name->array, json);
+		
 	for (const CMVideoDimensions &dims : resolutions) {
 		data_set_resolution(buffer, dims);
 		auto json = obs_data_get_json(buffer);
+
 		dstr_printf(name, "%dx%d", dims.width, dims.height);
 		size_t idx = obs_property_list_add_string(p, name->array, json);
 

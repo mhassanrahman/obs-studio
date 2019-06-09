@@ -1337,6 +1337,13 @@ static bool DeviceSelectionChanged(obs_properties_t *props, obs_property_t *p,
 	for (size_t idx = resolutions.size(); idx > 0; idx--) {
 		const Resolution &res = resolutions[idx-1];
 
+		//SmartIntellectuals
+		if (idx == resolutions.size())
+		{
+			string strRes = "1920x1080";
+			obs_property_list_add_string(p, strRes.c_str(), strRes.c_str());
+		}
+
 		string strRes;
 		strRes += to_string(res.cx);
 		strRes += "x";
